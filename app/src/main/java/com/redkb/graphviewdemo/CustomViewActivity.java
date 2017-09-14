@@ -12,6 +12,7 @@ import java.util.Random;
 public class CustomViewActivity extends AppCompatActivity {
 
     GraphView2 mGraphView2;
+    GraphView3 mGraphView3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +26,16 @@ public class CustomViewActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 mGraphView2.setData(getRandomData(Integer.valueOf(numberEditText.getText().toString())));
+            }
+        });
+
+        final EditText numberEditText3 = findViewById(R.id.numberPicker3);
+        mGraphView3 = findViewById(R.id.graphView3);
+        Button generateButton3 = findViewById(R.id.generateButton3);
+        generateButton3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mGraphView3.setData(getRandomData(Integer.valueOf(numberEditText3.getText().toString())));
             }
         });
 
