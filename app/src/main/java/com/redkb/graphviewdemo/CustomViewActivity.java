@@ -12,6 +12,7 @@ import java.util.Random;
 public class CustomViewActivity extends AppCompatActivity {
 
     GraphView2 mGraphView2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,8 +54,8 @@ public class CustomViewActivity extends AppCompatActivity {
         float[] randomData = new float[dataSize];
         Random random = new Random();
         randomData[0] = 5 + random.nextFloat();
-        for(int i = 1; i<randomData.length; i++){
-            randomData[i] = randomData[i-1] + random.nextFloat() -.46f;
+        for (int i = 1; i < randomData.length; i++) {
+            randomData[i] = randomData[i - 1] + random.nextFloat() - .46f;
         }
         return randomData;
     }

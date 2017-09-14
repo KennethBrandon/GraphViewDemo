@@ -4,9 +4,9 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="15dp"
     android:orientation="vertical"
-    tools:context="com.redkb.graphviewdemo.CustomViewActivity"
-    android:layout_margin="15dp">
+    tools:context="com.redkb.graphviewdemo.CustomViewActivity">
 
     <TabHost
         android:id="@+id/tabHost"
@@ -33,10 +33,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
+
                     <com.redkb.graphviewdemo.GraphView
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        />
+                        android:layout_height="match_parent" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -44,25 +44,26 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
+
                     <com.redkb.graphviewdemo.GraphView2
                         android:id="@+id/graphView2"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:layout_weight="1"
-                        />
+                        android:layout_weight="1" />
+
                     <Button
                         android:id="@+id/generateButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/generate_data"/>
+                        android:text="@string/generate_data" />
 
                     <EditText
                         android:id="@+id/numberPicker"
-                        android:text="@string/_100"
-                        android:hint="@string/number_of_points"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="numberSigned"/>
+                        android:hint="@string/number_of_points"
+                        android:inputType="numberSigned"
+                        android:text="@string/_100" />
                 </LinearLayout>
 
                 <LinearLayout

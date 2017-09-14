@@ -17,9 +17,10 @@ public class GraphView2 extends View {
     private final Path mPath = new Path();
 
     private float[] mData;
+
     public GraphView2(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-        mPaintLine.setColor(Color.argb(255,33,189,222));
+        mPaintLine.setColor(Color.argb(255, 33, 189, 222));
         int strokeInPx = (int) dpToPx(STROKE_WIDTH_DP);
         mPaintLine.setStrokeWidth(strokeInPx);
         mPaintLine.setStyle(Paint.Style.STROKE);
@@ -27,13 +28,13 @@ public class GraphView2 extends View {
         mPaintLine.setStrokeJoin(Paint.Join.ROUND);
     }
 
-    public void setData(float[] data){
+    public void setData(float[] data) {
         mData = data;
         mPath.reset();
         float max = findMax(data);
         float min = findMin(data);
         mPath.rMoveTo(getXFromIndex(0, data.length), getYFromValue(data[0], max, min));
-        for(int i = 1; i < data.length; i++){
+        for (int i = 1; i < data.length; i++) {
             mPath.lineTo(getXFromIndex(i, data.length), getYFromValue(data[i], max, min));
         }
         invalidate();
@@ -41,17 +42,18 @@ public class GraphView2 extends View {
 
     private float findMax(float[] data) {
         float max = Float.MIN_VALUE;
-        for(int i = 0; i<data.length; i++){
-            if(data[i]>max) {
+        for (int i = 0; i < data.length; i++) {
+            if (data[i] > max) {
                 max = data[i];
             }
         }
         return max;
     }
-    private float findMin (float[] data){
+
+    private float findMin(float[] data) {
         float min = Float.MAX_VALUE;
-        for(int i = 0; i<data.length; i++){
-            if(data[i]<min) {
+        for (int i = 0; i < data.length; i++) {
+            if (data[i] < min) {
                 min = data[i];
             }
         }
@@ -59,7 +61,7 @@ public class GraphView2 extends View {
     }
 
     private float getYFromValue(float value, float max, float min) {
-        return (max - value) * (getHeight()) / (max-min);
+        return (max - value) * (getHeight()) / (max - min);
     }
 
     private float getXFromIndex(int i, int max) {
@@ -74,16 +76,16 @@ public class GraphView2 extends View {
         super.onDraw(canvas);
     }
 
-    private void drawLine(Canvas canvas){
+    private void drawLine(Canvas canvas) {
         canvas.drawPath(mPath, mPaintLine);
     }
 
     private void drawAxes(Canvas canvas) {
-        canvas.drawLine(0,0,0,canvas.getHeight(), mPaintLine);
-        canvas.drawLine(0,canvas.getHeight(),canvas.getWidth(),canvas.getHeight(), mPaintLine);
+        canvas.drawLine(0, 0, 0, canvas.getHeight(), mPaintLine);
+        canvas.drawLine(0, canvas.getHeight(), canvas.getWidth(), canvas.getHeight(), mPaintLine);
     }
 
-    private float dpToPx(final float value){
+    private float dpToPx(final float value) {
         return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, value, getResources().getDisplayMetrics());
     }
 }

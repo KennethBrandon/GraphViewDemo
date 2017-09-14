@@ -28,11 +28,11 @@ public class GraphView extends View {
     }
 
     private void drawAxes(Canvas canvas) {
-        canvas.drawLine(0,0,0,canvas.getHeight(), mPaintLine);
-        canvas.drawLine(0,canvas.getHeight(),canvas.getWidth(),canvas.getHeight(), mPaintLine);
+        canvas.drawLine(0, 0, 0, canvas.getHeight(), mPaintLine);
+        canvas.drawLine(0, canvas.getHeight(), canvas.getWidth(), canvas.getHeight(), mPaintLine);
     }
 
-    private float dpToPx(final float value){
+    private float dpToPx(final float value) {
         return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, value, getResources().getDisplayMetrics());
     }
 }
