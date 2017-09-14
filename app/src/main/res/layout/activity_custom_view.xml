@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.redkb.customviewdemo.CustomViewActivity"
+    tools:context="com.redkb.graphviewdemo.CustomViewActivity"
     android:layout_margin="15dp">
 
     <TabHost
@@ -33,7 +33,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
-                    <com.redkb.customviewdemo.GraphView
+                    <com.redkb.graphviewdemo.GraphView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         />
@@ -44,7 +44,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
-                    <com.redkb.customviewdemo.GraphView2
+                    <com.redkb.graphviewdemo.GraphView2
                         android:id="@+id/graphView2"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"

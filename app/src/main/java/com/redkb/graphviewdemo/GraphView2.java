@@ -1,4 +1,4 @@
-package com.redkb.customviewdemo;
+package com.redkb.graphviewdemo;
 
 import android.content.Context;
 import android.graphics.Canvas;
