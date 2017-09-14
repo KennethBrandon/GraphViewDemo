@@ -18,7 +18,7 @@ public class GraphView3 extends View {
 
     public GraphView3(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-        mPaintLine.setColor(Color.argb(255, 33, 189, 222));
+        mPaintLine.setColor(Color.argb(255, 33, 234, 152));
         int strokeInPx = (int) dpToPx(STROKE_WIDTH_DP);
         mPaintLine.setStrokeWidth(strokeInPx);
         mPaintLine.setStyle(Paint.Style.STROKE);
