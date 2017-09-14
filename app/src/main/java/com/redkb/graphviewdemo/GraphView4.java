@@ -8,18 +8,17 @@ import android.graphics.Path;
 import android.graphics.Point;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
 
 import java.text.NumberFormat;
 
 public class GraphView4 extends View {
-    private static final String TAG = "GraphView3";
+    //private static final String TAG = "GraphView3";
     private static final int STROKE_WIDTH_DP = 4;
     private static final int POINTER_RADIUS_DP = 15;
-    private final int mStrokeInPx = (int) dpToPx(STROKE_WIDTH_DP);
-    private final int mPointerRadiusPx = (int) dpToPx(POINTER_RADIUS_DP);
+    private final int mStrokeInPx = (int) Utility.dpToPx(STROKE_WIDTH_DP, getResources());
+    private final int mPointerRadiusPx = (int) Utility.dpToPx(POINTER_RADIUS_DP, getResources());
     private final Paint mPaintLine = new Paint();
     private final Paint mPaintPointer = new Paint();
     private final Paint mPaintAxes = new Paint();
@@ -56,15 +55,15 @@ public class GraphView4 extends View {
         mPaintAxes.setStrokeJoin(Paint.Join.ROUND);
 
         mPaintText.setColor(Color.argb(255, 100, 20, 40));
-        mPaintText.setStrokeWidth(dpToPx(1));
-        mPaintText.setTextSize(dpToPx(20));
+        mPaintText.setStrokeWidth(Utility.dpToPx(1, getResources()));
+        mPaintText.setTextSize(Utility.dpToPx(20, getResources()));
         mPaintText.setAntiAlias(true);
     }
 
     public void setData(float[] data) {
         mPath.reset();
-        mMaxValue = findMax(data);
-        mMinValue = findMin(data);
+        mMaxValue = Utility.findMax(data);
+        mMinValue = Utility.findMin(data);
         mData = data;
         mMaxIndex = data.length;
 
@@ -150,29 +149,5 @@ public class GraphView4 extends View {
         }
         mCurrentValue = mData[index];
         mPointerLocation.set((int) getXFromIndex(index), (int) getYFromValue(mCurrentValue));
-    }
-
-    private float dpToPx(final float value) {
-        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, value, getResources().getDisplayMetrics());
-    }
-
-    private float findMax(float[] data) {
-        float max = Float.MIN_VALUE;
-        for (float aData : data) {
-            if (aData > max) {
-                max = aData;
-            }
-        }
-        return max;
-    }
-
-    private float findMin(float[] data) {
-        float min = Float.MAX_VALUE;
-        for (float aData : data) {
-            if (aData < min) {
-                min = aData;
-            }
-        }
-        return min;
     }
 }
