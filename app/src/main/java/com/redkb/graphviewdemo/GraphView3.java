@@ -8,6 +8,7 @@ import android.graphics.Path;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.TypedValue;
+import android.view.MotionEvent;
 import android.view.View;
 
 public class GraphView3 extends View {
@@ -35,6 +36,29 @@ public class GraphView3 extends View {
             mPath.lineTo(getXFromIndex(i, data.length), getYFromValue(data[i], max, min));
         }
         invalidate();
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+
+                invalidate();
+                break;
+
+            case MotionEvent.ACTION_MOVE:
+
+                invalidate();
+                break;
+
+            case MotionEvent.ACTION_CANCEL:
+            case MotionEvent.ACTION_UP:
+
+                invalidate();
+                break;
+        }
+        return super.onTouchEvent(event);
     }
 
     @Override
