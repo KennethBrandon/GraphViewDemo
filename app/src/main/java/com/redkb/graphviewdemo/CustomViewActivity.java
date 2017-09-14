@@ -13,6 +13,7 @@ public class CustomViewActivity extends AppCompatActivity {
 
     GraphView2 mGraphView2;
     GraphView3 mGraphView3;
+    GraphView4 mGraphView4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +40,16 @@ public class CustomViewActivity extends AppCompatActivity {
             }
         });
 
+        final EditText numberEditText4 = findViewById(R.id.numberPicker4);
+        mGraphView4 = findViewById(R.id.graphView4);
+        Button generateButton4 = findViewById(R.id.generateButton4);
+        generateButton4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mGraphView4.setData(getRandomData(Integer.valueOf(numberEditText4.getText().toString())));
+            }
+        });
+
         TabHost host = findViewById(R.id.tabHost);
         host.setup();
 
@@ -58,6 +69,12 @@ public class CustomViewActivity extends AppCompatActivity {
         spec = host.newTabSpec("Graph 3");
         spec.setContent(R.id.tab3);
         spec.setIndicator("Graph 3");
+        host.addTab(spec);
+
+        //Tab 4
+        spec = host.newTabSpec("Graph 4");
+        spec.setContent(R.id.tab4);
+        spec.setIndicator("Graph 4");
         host.addTab(spec);
     }
 
