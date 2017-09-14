@@ -16,7 +16,6 @@ public class GraphView2 extends View {
     private final Paint mPaintLine = new Paint();
     private final Path mPath = new Path();
 
-    private float[] mData;
 
     public GraphView2(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -29,7 +28,6 @@ public class GraphView2 extends View {
     }
 
     public void setData(float[] data) {
-        mData = data;
         mPath.reset();
         float max = findMax(data);
         float min = findMin(data);
