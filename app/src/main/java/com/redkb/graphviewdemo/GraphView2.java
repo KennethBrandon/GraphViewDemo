@@ -16,7 +16,6 @@ public class GraphView2 extends View {
     private final Paint mPaintLine = new Paint();
     private final Path mPath = new Path();
 
-
     public GraphView2(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         mPaintLine.setColor(Color.argb(255, 33, 189, 222));
@@ -38,6 +37,34 @@ public class GraphView2 extends View {
         invalidate();
     }
 
+    @Override
+    protected void onDraw(Canvas canvas) {
+        drawAxes(canvas);
+        drawLine(canvas);
+        super.onDraw(canvas);
+    }
+
+    private void drawLine(Canvas canvas) {
+        canvas.drawPath(mPath, mPaintLine);
+    }
+
+    private void drawAxes(Canvas canvas) {
+        canvas.drawLine(0, 0, 0, canvas.getHeight(), mPaintLine);
+        canvas.drawLine(0, canvas.getHeight(), canvas.getWidth(), canvas.getHeight(), mPaintLine);
+    }
+
+    private float getYFromValue(float value, float max, float min) {
+        return (max - value) * (getHeight()) / (max - min);
+    }
+
+    private float getXFromIndex(int i, int max) {
+        return ((float) i * ((getWidth()) / ((float) max - 1.0f)));
+    }
+
+    private float dpToPx(final float value) {
+        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, value, getResources().getDisplayMetrics());
+    }
+
     private float findMax(float[] data) {
         float max = Float.MIN_VALUE;
         for (float aData : data) {
@@ -56,34 +83,5 @@ public class GraphView2 extends View {
             }
         }
         return min;
-    }
-
-    private float getYFromValue(float value, float max, float min) {
-        return (max - value) * (getHeight()) / (max - min);
-    }
-
-    private float getXFromIndex(int i, int max) {
-        return ((float) i * ((getWidth()) / ((float) max - 1.0f)));
-    }
-
-
-    @Override
-    protected void onDraw(Canvas canvas) {
-        drawAxes(canvas);
-        drawLine(canvas);
-        super.onDraw(canvas);
-    }
-
-    private void drawLine(Canvas canvas) {
-        canvas.drawPath(mPath, mPaintLine);
-    }
-
-    private void drawAxes(Canvas canvas) {
-        canvas.drawLine(0, 0, 0, canvas.getHeight(), mPaintLine);
-        canvas.drawLine(0, canvas.getHeight(), canvas.getWidth(), canvas.getHeight(), mPaintLine);
-    }
-
-    private float dpToPx(final float value) {
-        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, value, getResources().getDisplayMetrics());
     }
 }
