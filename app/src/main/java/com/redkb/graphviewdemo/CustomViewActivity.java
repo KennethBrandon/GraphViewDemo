@@ -83,7 +83,7 @@ public class CustomViewActivity extends AppCompatActivity {
         Random random = new Random();
         randomData[0] = 5 + random.nextFloat();
         for (int i = 1; i < randomData.length; i++) {
-            randomData[i] = randomData[i - 1] + random.nextFloat() - .46f;
+            randomData[i] = randomData[i - 1] + random.nextFloat() - .47f;
         }
         return randomData;
     }
