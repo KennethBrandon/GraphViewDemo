@@ -1,5 +1,6 @@
 package com.redkb.graphviewdemo;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -10,13 +11,15 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.DecelerateInterpolator;
 
 import java.text.NumberFormat;
 
 public class GraphView4 extends View {
-    //private static final String TAG = "GraphView3";
+    //private static final String TAG = "GraphView4";
     private static final int STROKE_WIDTH_DP = 4;
     private static final int POINTER_RADIUS_DP = 15;
+    private static final int POINTER_ANIMATION_LENGTH = 200; //in ms
     private final int mStrokeInPx = (int) Utility.dpToPx(STROKE_WIDTH_DP, getResources());
     private final int mPointerRadiusPx = (int) Utility.dpToPx(POINTER_RADIUS_DP, getResources());
     private final Paint mPaintLine = new Paint();
@@ -32,6 +35,7 @@ public class GraphView4 extends View {
     private int mMaxIndex;
     private float[] mData;
     private float mCurrentValue; //the value of the current down location
+    private ValueAnimator mPointerAnimator = ValueAnimator.ofFloat(0, 1);
 
     public GraphView4(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -58,6 +62,15 @@ public class GraphView4 extends View {
         mPaintText.setStrokeWidth(Utility.dpToPx(1, getResources()));
         mPaintText.setTextSize(Utility.dpToPx(20, getResources()));
         mPaintText.setAntiAlias(true);
+
+        mPointerAnimator.setDuration(POINTER_ANIMATION_LENGTH);
+        mPointerAnimator.setInterpolator(new DecelerateInterpolator());
+        mPointerAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator valueAnimator) {
+                invalidate(); //this causes onDraw to be called to draw the animation
+            }
+        });
     }
 
     public void setData(float[] data) {
@@ -80,15 +93,17 @@ public class GraphView4 extends View {
         //Log.i(TAG, "Event: " + event.getAction() + " (" + event.getX() + ", " + event.getY() + ")");
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
+                mPointerAnimator.start();
+                mDown = true;
             case MotionEvent.ACTION_MOVE:
                 setPointerLocation(event);
-                mDown = true;
                 invalidate();
                 break;
 
             case MotionEvent.ACTION_CANCEL:
             case MotionEvent.ACTION_UP:
                 mDown = false;
+                mPointerAnimator.reverse();
                 invalidate();
                 break;
         }
@@ -99,7 +114,7 @@ public class GraphView4 extends View {
     protected void onDraw(Canvas canvas) {
         drawAxes(canvas);
         drawLine(canvas);
-        if (mDown) {
+        if (mDown || mPointerAnimator.isRunning()) {
             drawPointerCircle(canvas);
             drawPointerX(canvas);
             drawTextValue(canvas);
@@ -108,17 +123,36 @@ public class GraphView4 extends View {
     }
 
     private void drawTextValue(Canvas canvas) {
+        if (mPointerAnimator.isRunning()) {
+            mPaintText.setAlpha((int) (mPointerAnimator.getAnimatedFraction() * 255));  //fade in
+        } else {
+            mPaintText.setAlpha(255);
+        }
         canvas.drawText(mFormat.format(mCurrentValue), mPointerLocation.x + mPointerRadiusPx * 1.2f, mPointerLocation.y - 2 * mStrokeInPx, mPaintText);
     }
 
     private void drawPointerX(Canvas canvas) {
         //X Marks the spot
-        canvas.drawLine(mPointerLocation.x, 0, mPointerLocation.x, canvas.getHeight(), mPaintPointer); //vertical line
-        canvas.drawLine(0, mPointerLocation.y, canvas.getWidth(), mPointerLocation.y, mPaintPointer); //horizontal line
+        if (mPointerAnimator.isRunning()) {
+            canvas.drawLine(mPointerLocation.x, mPointerLocation.y, mPointerLocation.x, mPointerLocation.y - (mPointerAnimator.getAnimatedFraction() * mPointerLocation.y), mPaintPointer); //vertical line top
+            canvas.drawLine(mPointerLocation.x, mPointerLocation.y, mPointerLocation.x, mPointerLocation.y + (mPointerAnimator.getAnimatedFraction() * (canvas.getHeight() - mPointerLocation.y)), mPaintPointer); //vertical line bottom
+            canvas.drawLine(mPointerLocation.x - (mPointerAnimator.getAnimatedFraction() * mPointerLocation.x), mPointerLocation.y, mPointerLocation.x, mPointerLocation.y, mPaintPointer); //horizontal line left
+            canvas.drawLine(mPointerLocation.x + (mPointerAnimator.getAnimatedFraction() * (canvas.getWidth() - mPointerLocation.x)), mPointerLocation.y, mPointerLocation.x, mPointerLocation.y, mPaintPointer); //horizontal line right
+
+        } else {
+            canvas.drawLine(mPointerLocation.x, 0, mPointerLocation.x, canvas.getHeight(), mPaintPointer); //vertical line
+            canvas.drawLine(0, mPointerLocation.y, canvas.getWidth(), mPointerLocation.y, mPaintPointer); //horizontal line
+        }
     }
 
     private void drawPointerCircle(Canvas canvas) {
+        if (mPointerAnimator.isRunning()) {
+            mPaintPointer.setAlpha((int) (mPointerAnimator.getAnimatedFraction() * 255));
+        } else {
+            mPaintPointer.setAlpha(255);
+        }
         canvas.drawCircle(mPointerLocation.x, mPointerLocation.y, mPointerRadiusPx, mPaintPointer);
+        mPaintPointer.setAlpha(255); //back to full. This is needed because this paint is shared with drawing the X
     }
 
     private void drawLine(Canvas canvas) {
