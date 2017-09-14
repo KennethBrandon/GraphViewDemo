@@ -40,9 +40,9 @@ public class GraphView2 extends View {
 
     private float findMax(float[] data) {
         float max = Float.MIN_VALUE;
-        for (int i = 0; i < data.length; i++) {
-            if (data[i] > max) {
-                max = data[i];
+        for (float aData : data) {
+            if (aData > max) {
+                max = aData;
             }
         }
         return max;
@@ -50,9 +50,9 @@ public class GraphView2 extends View {
 
     private float findMin(float[] data) {
         float min = Float.MAX_VALUE;
-        for (int i = 0; i < data.length; i++) {
-            if (data[i] < min) {
-                min = data[i];
+        for (float aData : data) {
+            if (aData < min) {
+                min = aData;
             }
         }
         return min;
