@@ -3,4 +3,6 @@
     <string name="generate_data">Generate Data</string>
     <string name="number_of_points">Number of Points</string>
     <string name="_100">100</string>
+    <string name="bar">Bar</string>
+    <string name="line">Line</string>
 </resources>

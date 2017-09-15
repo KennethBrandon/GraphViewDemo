@@ -51,19 +51,35 @@
                         redkb:graphType="line"
                         redkb:numberTextSize="25sp" />
 
-                    <Button
-                        android:id="@+id/generateButton5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/generate_data" />
-
-                    <EditText
-                        android:id="@+id/numberPicker5"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/number_of_points"
-                        android:inputType="numberSigned"
-                        android:text="@string/_100" />
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/generateButton5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/generate_data" />
+
+                        <EditText
+                            android:id="@+id/numberPicker5"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/number_of_points"
+                            android:inputType="numberSigned"
+                            android:text="@string/_100" />
+
+                        <Switch
+                            android:id="@+id/lineBarSwitch5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:showText="true"
+                            android:textOff="@string/line"
+                            android:textOn="@string/bar" />
+                    </LinearLayout>
+
                 </LinearLayout>
 
                 <LinearLayout

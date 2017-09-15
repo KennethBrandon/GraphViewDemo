@@ -4,7 +4,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.TabHost;
 
 import java.util.Random;
@@ -58,6 +60,17 @@ public class CustomViewActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 mGraphView5.setData(getRandomData(Integer.valueOf(numberEditText5.getText().toString())));
+            }
+        });
+        final Switch lineBarSwitch = findViewById(R.id.lineBarSwitch5);
+        lineBarSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b) {
+                    mGraphView5.setGraphType(GraphView5.GraphType.BAR);
+                } else {
+                    mGraphView5.setGraphType(GraphView5.GraphType.LINE);
+                }
             }
         });
 
