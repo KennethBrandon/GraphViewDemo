@@ -35,7 +35,7 @@ public class GraphView5 extends View {
 
     private boolean mShowAxes = true;
     private boolean mShowPointer = true;
-    private int pointerAnimationLength = 200; //in ms
+    private int mPointerAnimationLength = 200; //in ms
     private int mAxesColor;
     private int mLineColor;
     private int mPointerColor;
@@ -71,7 +71,7 @@ public class GraphView5 extends View {
             mGraphType = GraphType.fromInteger(typedArray.getInteger(R.styleable.GraphView5_graphType, 0));
             mShowAxes = typedArray.getBoolean(R.styleable.GraphView5_showAxes, true);
             mShowPointer = typedArray.getBoolean(R.styleable.GraphView5_showPointer, false);
-            pointerAnimationLength = typedArray.getInteger(R.styleable.GraphView5_animationDuration, 200);
+            mPointerAnimationLength = typedArray.getInteger(R.styleable.GraphView5_animationDuration, 200);
             mAxesColor = typedArray.getColor(R.styleable.GraphView5_axesColor, 0x053388);
             mLineColor = typedArray.getColor(R.styleable.GraphView5_lineColor, 0x119944);
             mPointerColor = typedArray.getColor(R.styleable.GraphView5_pointerColor, 0xaa3344);
@@ -105,7 +105,7 @@ public class GraphView5 extends View {
         mPaintText.setTextSize(mTextSize);
         mPaintText.setAntiAlias(true);
 
-        mPointerAnimator.setDuration(pointerAnimationLength);
+        mPointerAnimator.setDuration(mPointerAnimationLength);
         mPointerAnimator.setInterpolator(new DecelerateInterpolator());
         mPointerAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
@@ -266,83 +266,83 @@ public class GraphView5 extends View {
         mPointerLocation.set((int) getXFromIndex(index), (int) getYFromValue(mCurrentValue));
     }
 
-    public boolean ismShowAxes() {
+    public boolean showAxes() {
         return mShowAxes;
     }
 
-    public void setmShowAxes(boolean mShowAxes) {
-        this.mShowAxes = mShowAxes;
+    public void setShowAxes(boolean showAxes) {
+        this.mShowAxes = showAxes;
     }
 
-    public boolean ismShowPointer() {
+    public boolean showPointer() {
         return mShowPointer;
     }
 
-    public void setmShowPointer(boolean mShowPointer) {
-        this.mShowPointer = mShowPointer;
+    public void setShowPointer(boolean showPointer) {
+        this.mShowPointer = showPointer;
     }
 
     public int getPointerAnimationLength() {
-        return pointerAnimationLength;
+        return mPointerAnimationLength;
     }
 
     public void setPointerAnimationLength(int pointerAnimationLength) {
-        this.pointerAnimationLength = pointerAnimationLength;
+        this.mPointerAnimationLength = pointerAnimationLength;
     }
 
-    public int getmAxesColor() {
+    public int getAxesColor() {
         return mAxesColor;
     }
 
-    public void setmAxesColor(int mAxesColor) {
-        this.mAxesColor = mAxesColor;
+    public void setAxesColor(int axesColor) {
+        this.mAxesColor = axesColor;
     }
 
-    public int getmLineColor() {
+    public int getLineColor() {
         return mLineColor;
     }
 
-    public void setmLineColor(int mLineColor) {
-        this.mLineColor = mLineColor;
+    public void setLineColor(int lineColor) {
+        this.mLineColor = lineColor;
     }
 
-    public int getmPointerColor() {
+    public int getPointerColor() {
         return mPointerColor;
     }
 
-    public void setmPointerColor(int mPointerColor) {
-        this.mPointerColor = mPointerColor;
+    public void setPointerColor(int pointerColor) {
+        this.mPointerColor = pointerColor;
     }
 
-    public int getmLineWidth() {
+    public int getLineWidth() {
         return mLineWidth;
     }
 
-    public void setmLineWidth(int mLineWidth) {
-        this.mLineWidth = mLineWidth;
+    public void setLineWidth(int lineWidth) {
+        this.mLineWidth = lineWidth;
     }
 
-    public int getmTextSize() {
+    public int getTextSize() {
         return mTextSize;
     }
 
-    public void setmTextSize(int mTextSize) {
-        this.mTextSize = mTextSize;
+    public void setTextSize(int textSize) {
+        this.mTextSize = textSize;
     }
 
-    public int getmPointerRadiusPx() {
+    public int getPointerRadiusPx() {
         return mPointerRadiusPx;
     }
 
-    public void setmPointerRadiusPx(int mPointerRadiusPx) {
+    public void setPointerRadiusPx(int mPointerRadiusPx) {
         this.mPointerRadiusPx = mPointerRadiusPx;
     }
 
-    public GraphType getmGraphType() {
+    public GraphType getGraphType() {
         return mGraphType;
     }
 
-    public void setmGraphType(GraphType mGraphType) {
-        this.mGraphType = mGraphType;
+    public void setGraphType(GraphType graphType) {
+        this.mGraphType = graphType;
     }
 }
