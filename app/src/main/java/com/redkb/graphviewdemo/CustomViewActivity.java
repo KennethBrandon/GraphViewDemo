@@ -14,6 +14,7 @@ public class CustomViewActivity extends AppCompatActivity {
     GraphView2 mGraphView2;
     GraphView3 mGraphView3;
     GraphView4 mGraphView4;
+    GraphView5 mGraphView5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +51,16 @@ public class CustomViewActivity extends AppCompatActivity {
             }
         });
 
+        final EditText numberEditText5 = findViewById(R.id.numberPicker5);
+        mGraphView5 = findViewById(R.id.graphView5);
+        Button generateButton5 = findViewById(R.id.generateButton5);
+        generateButton5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mGraphView5.setData(getRandomData(Integer.valueOf(numberEditText5.getText().toString())));
+            }
+        });
+
         TabHost host = findViewById(R.id.tabHost);
         host.setup();
 
@@ -75,6 +86,12 @@ public class CustomViewActivity extends AppCompatActivity {
         spec = host.newTabSpec("Graph 4");
         spec.setContent(R.id.tab4);
         spec.setIndicator("Graph 4");
+        host.addTab(spec);
+
+        //Tab 5
+        spec = host.newTabSpec("Graph 5");
+        spec.setContent(R.id.tab5);
+        spec.setIndicator("Graph 5");
         host.addTab(spec);
     }
 
