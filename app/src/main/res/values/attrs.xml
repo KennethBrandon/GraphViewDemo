@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="PieChart">
+        <attr name="showAxes" format="boolean" />
+        <attr name="showPointer" format="boolean" />
+        <attr name="animationDuration" format="integer" />
+        <attr name="numberTextSize" format="dimension" />
+        <attr name="lineColor" format="color" />
+        <attr name="axesColor" format="color" />
+        <attr name="pointerColor" format="color" />
+        <attr name="lineWidth" format="dimension" />
+        <attr name="graphType" format="enum">
+            <enum name="line" value="0" />
+            <enum name="bar" value="1" />
+        </attr>
+    </declare-styleable>
+</resources>
