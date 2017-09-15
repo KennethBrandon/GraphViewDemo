@@ -74,6 +74,9 @@ public class GraphView5 extends View {
                 invalidate(); //this causes onDraw to be called to draw the animation
             }
         });
+        if (isInEditMode()) {
+            setData(new float[]{5.0f, 22.2f, 12.3f, 16.4f, 15.5f, 19.4f, 14.3f, 11.3f, 7.3f});
+        }
     }
 
     public void setData(float[] data) {
