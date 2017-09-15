@@ -40,8 +40,8 @@ public class GraphView5 extends View {
     private int mAxesColor;
     private int mLineColor;
     private int mPointerColor;
-    private int mLineWidth;
-    private int mTextSize;
+    private int mLineWidthPx;
+    private int mTextSizePx;
     private int mPointerRadiusPx;
     private GraphType mGraphType = GraphType.BAR;
 
@@ -76,34 +76,34 @@ public class GraphView5 extends View {
             mAxesColor = typedArray.getColor(R.styleable.GraphView5_axesColor, 0x053388);
             mLineColor = typedArray.getColor(R.styleable.GraphView5_lineColor, 0x119944);
             mPointerColor = typedArray.getColor(R.styleable.GraphView5_pointerColor, 0xaa3344);
-            mLineWidth = typedArray.getDimensionPixelSize(R.styleable.GraphView5_lineWidth, (int) Utility.dpToPx(2, getResources()));
-            mTextSize = typedArray.getDimensionPixelSize(R.styleable.GraphView5_numberTextSize, (int) Utility.dpToPx(20, getResources()));
+            mLineWidthPx = typedArray.getDimensionPixelSize(R.styleable.GraphView5_lineWidth, (int) Utility.dpToPx(2, getResources()));
+            mTextSizePx = typedArray.getDimensionPixelSize(R.styleable.GraphView5_numberTextSize, (int) Utility.dpToPx(20, getResources()));
             mPointerRadiusPx = typedArray.getDimensionPixelSize(R.styleable.GraphView5_pointerRadius, (int) Utility.dpToPx(15, getResources()));
         } finally {
             typedArray.recycle();
         }
 
         mPaintLine.setColor(mLineColor);
-        mPaintLine.setStrokeWidth(mLineWidth);
+        mPaintLine.setStrokeWidth(mLineWidthPx);
         mPaintLine.setStyle(Paint.Style.STROKE);
         mPaintLine.setAntiAlias(true);
         mPaintLine.setStrokeJoin(Paint.Join.ROUND);
 
         mPaintPointer.setColor(mPointerColor);
-        mPaintPointer.setStrokeWidth(mLineWidth);
+        mPaintPointer.setStrokeWidth(mLineWidthPx);
         mPaintPointer.setStyle(Paint.Style.STROKE);
         mPaintPointer.setAntiAlias(true);
         mPaintPointer.setStrokeJoin(Paint.Join.ROUND);
 
         mPaintAxes.setColor(mAxesColor);
-        mPaintAxes.setStrokeWidth(mLineWidth);
+        mPaintAxes.setStrokeWidth(mLineWidthPx);
         mPaintAxes.setStyle(Paint.Style.STROKE);
         mPaintAxes.setAntiAlias(true);
         mPaintAxes.setStrokeJoin(Paint.Join.ROUND);
 
         mPaintText.setColor(mPointerColor);
         mPaintText.setStrokeWidth(Utility.dpToPx(1, getResources()));
-        mPaintText.setTextSize(mTextSize);
+        mPaintText.setTextSize(mTextSizePx);
         mPaintText.setAntiAlias(true);
 
         mPointerAnimator.setDuration(mPointerAnimationLength);
@@ -188,7 +188,7 @@ public class GraphView5 extends View {
         } else {
             mPaintText.setAlpha(255);
         }
-        canvas.drawText(mFormat.format(mCurrentValue), mPointerLocation.x + mPointerRadiusPx * 1.2f, mPointerLocation.y - 2 * mLineWidth, mPaintText);
+        canvas.drawText(mFormat.format(mCurrentValue), mPointerLocation.x + mPointerRadiusPx * 1.2f, mPointerLocation.y - 2 * mLineWidthPx, mPaintText);
     }
 
     private void drawPointerX(Canvas canvas) {
@@ -316,19 +316,19 @@ public class GraphView5 extends View {
     }
 
     public int getLineWidth() {
-        return mLineWidth;
+        return mLineWidthPx;
     }
 
     public void setLineWidth(int lineWidth) {
-        this.mLineWidth = lineWidth;
+        this.mLineWidthPx = lineWidth;
     }
 
     public int getTextSize() {
-        return mTextSize;
+        return mTextSizePx;
     }
 
     public void setTextSize(int textSize) {
-        this.mTextSize = textSize;
+        this.mTextSizePx = textSize;
     }
 
     public int getPointerRadiusPx() {
