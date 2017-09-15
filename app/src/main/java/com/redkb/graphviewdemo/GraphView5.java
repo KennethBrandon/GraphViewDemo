@@ -23,23 +23,25 @@ public class GraphView5 extends View {
     private final Paint mPaintText = new Paint();
     private final Path mPath = new Path();
     private final NumberFormat mFormat = NumberFormat.getCurrencyInstance();
+
+    private ValueAnimator mPointerAnimator = ValueAnimator.ofFloat(0, 1);
     private Point mPointerLocation = new Point();
-    private boolean mDown = false;
-    private boolean mShowAxes = true;
-    private boolean mShowPointer = true;
-    private int pointerAnimationLength = 200; //in ms
     private float mMaxValue;
     private float mMinValue;
     private int mMaxIndex;
+    private boolean mDown = false;
+    private float[] mData;
+    private float mCurrentValue; //the value of the current down location
+
+    private boolean mShowAxes = true;
+    private boolean mShowPointer = true;
+    private int pointerAnimationLength = 200; //in ms
     private int mAxesColor;
     private int mLineColor;
     private int mPointerColor;
     private int mLineWidth;
     private int mTextSize;
     private int mPointerRadiusPx;
-    private float[] mData;
-    private float mCurrentValue; //the value of the current down location
-    private ValueAnimator mPointerAnimator = ValueAnimator.ofFloat(0, 1);
     private GraphType mGraphType = GraphType.BAR;
 
     protected enum GraphType {
@@ -262,5 +264,85 @@ public class GraphView5 extends View {
         }
         mCurrentValue = mData[index];
         mPointerLocation.set((int) getXFromIndex(index), (int) getYFromValue(mCurrentValue));
+    }
+
+    public boolean ismShowAxes() {
+        return mShowAxes;
+    }
+
+    public void setmShowAxes(boolean mShowAxes) {
+        this.mShowAxes = mShowAxes;
+    }
+
+    public boolean ismShowPointer() {
+        return mShowPointer;
+    }
+
+    public void setmShowPointer(boolean mShowPointer) {
+        this.mShowPointer = mShowPointer;
+    }
+
+    public int getPointerAnimationLength() {
+        return pointerAnimationLength;
+    }
+
+    public void setPointerAnimationLength(int pointerAnimationLength) {
+        this.pointerAnimationLength = pointerAnimationLength;
+    }
+
+    public int getmAxesColor() {
+        return mAxesColor;
+    }
+
+    public void setmAxesColor(int mAxesColor) {
+        this.mAxesColor = mAxesColor;
+    }
+
+    public int getmLineColor() {
+        return mLineColor;
+    }
+
+    public void setmLineColor(int mLineColor) {
+        this.mLineColor = mLineColor;
+    }
+
+    public int getmPointerColor() {
+        return mPointerColor;
+    }
+
+    public void setmPointerColor(int mPointerColor) {
+        this.mPointerColor = mPointerColor;
+    }
+
+    public int getmLineWidth() {
+        return mLineWidth;
+    }
+
+    public void setmLineWidth(int mLineWidth) {
+        this.mLineWidth = mLineWidth;
+    }
+
+    public int getmTextSize() {
+        return mTextSize;
+    }
+
+    public void setmTextSize(int mTextSize) {
+        this.mTextSize = mTextSize;
+    }
+
+    public int getmPointerRadiusPx() {
+        return mPointerRadiusPx;
+    }
+
+    public void setmPointerRadiusPx(int mPointerRadiusPx) {
+        this.mPointerRadiusPx = mPointerRadiusPx;
+    }
+
+    public GraphType getmGraphType() {
+        return mGraphType;
+    }
+
+    public void setmGraphType(GraphType mGraphType) {
+        this.mGraphType = mGraphType;
     }
 }
