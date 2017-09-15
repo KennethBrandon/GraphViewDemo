@@ -36,6 +36,11 @@ public class GraphView5 extends View {
     private float[] mData;
     private float mCurrentValue; //the value of the current down location
     private ValueAnimator mPointerAnimator = ValueAnimator.ofFloat(0, 1);
+    private GraphType mGraphType = GraphType.BAR;
+
+    protected enum GraphType {LINE, BAR}
+
+    ;
 
     public GraphView5(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -113,13 +118,28 @@ public class GraphView5 extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         drawAxes(canvas);
-        drawLine(canvas);
+        switch (mGraphType) {
+            case LINE:
+                drawLine(canvas);
+                break;
+            case BAR:
+                drawBar(canvas);
+                break;
+        }
         if ((mDown || mPointerAnimator.isRunning()) && mData != null) {
             drawPointerCircle(canvas);
             drawPointerX(canvas);
             drawTextValue(canvas);
         }
         super.onDraw(canvas);
+    }
+
+    private void drawBar(Canvas canvas) {
+        if (mData == null) return;
+        for (int i = 0; i < mData.length; i++) {
+            int x = (int) getXFromIndex(i);
+            canvas.drawLine(x, getYFromValue(mData[i]), x, getHeight(), mPaintLine);
+        }
     }
 
     private void drawTextValue(Canvas canvas) {
