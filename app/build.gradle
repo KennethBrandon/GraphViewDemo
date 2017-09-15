@@ -4,8 +4,8 @@ android {
     compileSdkVersion 26
     buildToolsVersion "26.0.0"
     defaultConfig {
-        applicationId "com.redkb.customviewdemo"
-        minSdkVersion 24
+        applicationId "com.redkb.graphviewdemo"
+        minSdkVersion 21
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
