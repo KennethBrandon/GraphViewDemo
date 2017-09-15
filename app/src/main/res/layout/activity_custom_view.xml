@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:redkb="http://schemas.android.com/apk/res-auto"
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -38,7 +39,16 @@
                         android:id="@+id/graphView5"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:layout_weight="1" />
+                        android:layout_weight="1"
+                        redkb:animationDuration="100"
+                        redkb:pointerColor="@color/colorAccent"
+                        redkb:lineColor="@color/colorPrimary"
+                        redkb:axesColor="@color/colorPrimaryDark"
+                        redkb:lineWidth="3dp"
+                        redkb:showPointer="true"
+                        redkb:showAxes="true"
+                        redkb:graphType="line"
+                        redkb:numberTextSize="25sp" />
 
                     <Button
                         android:id="@+id/generateButton5"

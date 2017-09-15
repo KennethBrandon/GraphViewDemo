@@ -2,8 +2,8 @@ package com.redkb.graphviewdemo;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Point;
@@ -19,7 +19,7 @@ public class GraphView5 extends View {
     //private static final String TAG = "GraphView5";
     private static final int STROKE_WIDTH_DP = 4;
     private static final int POINTER_RADIUS_DP = 15;
-    private static final int POINTER_ANIMATION_LENGTH = 200; //in ms
+    private static int POINTER_ANIMATION_LENGTH = 200; //in ms
     private final int mStrokeInPx = (int) Utility.dpToPx(STROKE_WIDTH_DP, getResources());
     private final int mPointerRadiusPx = (int) Utility.dpToPx(POINTER_RADIUS_DP, getResources());
     private final Paint mPaintLine = new Paint();
@@ -30,40 +30,79 @@ public class GraphView5 extends View {
     private final NumberFormat mFormat = NumberFormat.getCurrencyInstance();
     private Point mPointerLocation = new Point();
     private boolean mDown = false;
+    private boolean mShowAxes = true;
+    private boolean mShowPointer = true;
     private float mMaxValue;
     private float mMinValue;
     private int mMaxIndex;
+    private int mAxesColor;
+    private int mLineColor;
+    private int mPointerColor;
+    private int mLineWidth;
+    private int mTextSize;
     private float[] mData;
     private float mCurrentValue; //the value of the current down location
     private ValueAnimator mPointerAnimator = ValueAnimator.ofFloat(0, 1);
     private GraphType mGraphType = GraphType.BAR;
 
-    protected enum GraphType {LINE, BAR}
+    protected enum GraphType {
+        LINE,
+        BAR;
+
+        public static GraphType fromInteger(int x) {
+            switch (x) {
+                case 0:
+                    return LINE;
+                case 1:
+                    return BAR;
+            }
+            return null;
+        }
+    }
 
     public GraphView5(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
 
-        mPaintLine.setColor(Color.argb(255, 33, 234, 152));
-        mPaintLine.setStrokeWidth(mStrokeInPx);
+        TypedArray typedArray = context.getTheme().obtainStyledAttributes(
+                attrs,
+                R.styleable.GraphView5,
+                0, 0);
+
+        try {
+            mGraphType = GraphType.fromInteger(typedArray.getInteger(R.styleable.GraphView5_graphType, 0));
+            mShowAxes = typedArray.getBoolean(R.styleable.GraphView5_showAxes, true);
+            mShowPointer = typedArray.getBoolean(R.styleable.GraphView5_showPointer, false);
+            POINTER_ANIMATION_LENGTH = typedArray.getInteger(R.styleable.GraphView5_animationDuration, 200);
+            mAxesColor = typedArray.getColor(R.styleable.GraphView5_axesColor, 0x053388);
+            mLineColor = typedArray.getColor(R.styleable.GraphView5_lineColor, 0x119944);
+            mPointerColor = typedArray.getColor(R.styleable.GraphView5_pointerColor, 0xaa3344);
+            mLineWidth = typedArray.getDimensionPixelSize(R.styleable.GraphView5_lineWidth, (int) Utility.dpToPx(2, getResources()));
+            mTextSize = typedArray.getDimensionPixelSize(R.styleable.GraphView5_numberTextSize, (int) Utility.dpToPx(20, getResources()));
+        } finally {
+            typedArray.recycle();
+        }
+
+        mPaintLine.setColor(mLineColor);
+        mPaintLine.setStrokeWidth(mLineWidth);
         mPaintLine.setStyle(Paint.Style.STROKE);
         mPaintLine.setAntiAlias(true);
         mPaintLine.setStrokeJoin(Paint.Join.ROUND);
 
-        mPaintPointer.setColor(Color.argb(255, 100, 20, 40));
-        mPaintPointer.setStrokeWidth(mStrokeInPx);
+        mPaintPointer.setColor(mPointerColor);
+        mPaintPointer.setStrokeWidth(mLineWidth);
         mPaintPointer.setStyle(Paint.Style.STROKE);
         mPaintPointer.setAntiAlias(true);
         mPaintPointer.setStrokeJoin(Paint.Join.ROUND);
 
-        mPaintAxes.setColor(Color.argb(255, 10, 120, 100));
-        mPaintAxes.setStrokeWidth(mStrokeInPx);
+        mPaintAxes.setColor(mAxesColor);
+        mPaintAxes.setStrokeWidth(mLineWidth);
         mPaintAxes.setStyle(Paint.Style.STROKE);
         mPaintAxes.setAntiAlias(true);
         mPaintAxes.setStrokeJoin(Paint.Join.ROUND);
 
-        mPaintText.setColor(Color.argb(255, 100, 20, 40));
+        mPaintText.setColor(mPointerColor);
         mPaintText.setStrokeWidth(Utility.dpToPx(1, getResources()));
-        mPaintText.setTextSize(Utility.dpToPx(20, getResources()));
+        mPaintText.setTextSize(mTextSize);
         mPaintText.setAntiAlias(true);
 
         mPointerAnimator.setDuration(POINTER_ANIMATION_LENGTH);
@@ -76,21 +115,19 @@ public class GraphView5 extends View {
         });
         if (isInEditMode()) {
             setData(new float[]{5.0f, 22.2f, 12.3f, 16.4f, 15.5f, 19.4f, 14.3f, 11.3f, 7.3f});
+            mDown = true;
+            mCurrentValue = 12;
+            mPointerLocation = new Point(200, 200);
+
         }
     }
 
     public void setData(float[] data) {
-        mPath.reset();
         mMaxValue = Utility.findMax(data);
         mMinValue = Utility.findMin(data);
         mData = data;
         mMaxIndex = data.length;
-
-        //creating path from data
-        mPath.rMoveTo(getXFromIndex(0), getYFromValue(data[0]));
-        for (int i = 1; i < data.length; i++) {
-            mPath.lineTo(getXFromIndex(i), getYFromValue(data[i]));
-        }
+        mPath.reset();
         invalidate();
     }
 
@@ -118,7 +155,9 @@ public class GraphView5 extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        drawAxes(canvas);
+        if (mShowAxes) {
+            drawAxes(canvas);
+        }
         switch (mGraphType) {
             case LINE:
                 drawLine(canvas);
@@ -127,7 +166,7 @@ public class GraphView5 extends View {
                 drawBar(canvas);
                 break;
         }
-        if ((mDown || mPointerAnimator.isRunning()) && mData != null) {
+        if ((mDown || mPointerAnimator.isRunning()) && mData != null && mShowPointer) {
             drawPointerCircle(canvas);
             drawPointerX(canvas);
             drawTextValue(canvas);
@@ -177,7 +216,22 @@ public class GraphView5 extends View {
     }
 
     private void drawLine(Canvas canvas) {
+        if (mPath.isEmpty()) {
+            buildPath(); //
+        }
         canvas.drawPath(mPath, mPaintLine);
+    }
+
+    private void buildPath() {
+        //creating path from data
+        if (mData == null) {
+            return;
+        }
+        mPath.reset();
+        mPath.rMoveTo(getXFromIndex(0), getYFromValue(mData[0]));
+        for (int i = 1; i < mData.length; i++) {
+            mPath.lineTo(getXFromIndex(i), getYFromValue(mData[i]));
+        }
     }
 
     private void drawAxes(Canvas canvas) {
@@ -186,7 +240,11 @@ public class GraphView5 extends View {
     }
 
     private float getYFromValue(float value) {
-        return (mMaxValue - value) * (getHeight()) / (mMaxValue - mMinValue);
+        if (mGraphType == GraphType.LINE) {
+            return (mMaxValue - value) * (getHeight()) / (mMaxValue - mMinValue);//if line the smallest point is at the bottom of the graph
+        } else {
+            return (mMaxValue - value) * (getHeight()) / (mMaxValue - mMinValue * .9f);//if bar make the smallest point above the bottom of the graph so there is a bar
+        }
     }
 
     private float getXFromIndex(int i) {
