@@ -118,7 +118,6 @@ public class GraphView5 extends View {
             mDown = true;
             mCurrentValue = 12;
             mPointerLocation = new Point(200, 200);
-
         }
     }
 
