@@ -17,10 +17,7 @@ import java.text.NumberFormat;
 
 public class GraphView5 extends View {
     //private static final String TAG = "GraphView5";
-    private static final int STROKE_WIDTH_DP = 4;
     private static final int POINTER_RADIUS_DP = 15;
-    private static int POINTER_ANIMATION_LENGTH = 200; //in ms
-    private final int mStrokeInPx = (int) Utility.dpToPx(STROKE_WIDTH_DP, getResources());
     private final int mPointerRadiusPx = (int) Utility.dpToPx(POINTER_RADIUS_DP, getResources());
     private final Paint mPaintLine = new Paint();
     private final Paint mPaintPointer = new Paint();
@@ -32,6 +29,7 @@ public class GraphView5 extends View {
     private boolean mDown = false;
     private boolean mShowAxes = true;
     private boolean mShowPointer = true;
+    private int pointerAnimationLength = 200; //in ms
     private float mMaxValue;
     private float mMinValue;
     private int mMaxIndex;
@@ -72,7 +70,7 @@ public class GraphView5 extends View {
             mGraphType = GraphType.fromInteger(typedArray.getInteger(R.styleable.GraphView5_graphType, 0));
             mShowAxes = typedArray.getBoolean(R.styleable.GraphView5_showAxes, true);
             mShowPointer = typedArray.getBoolean(R.styleable.GraphView5_showPointer, false);
-            POINTER_ANIMATION_LENGTH = typedArray.getInteger(R.styleable.GraphView5_animationDuration, 200);
+            pointerAnimationLength = typedArray.getInteger(R.styleable.GraphView5_animationDuration, 200);
             mAxesColor = typedArray.getColor(R.styleable.GraphView5_axesColor, 0x053388);
             mLineColor = typedArray.getColor(R.styleable.GraphView5_lineColor, 0x119944);
             mPointerColor = typedArray.getColor(R.styleable.GraphView5_pointerColor, 0xaa3344);
@@ -105,7 +103,7 @@ public class GraphView5 extends View {
         mPaintText.setTextSize(mTextSize);
         mPaintText.setAntiAlias(true);
 
-        mPointerAnimator.setDuration(POINTER_ANIMATION_LENGTH);
+        mPointerAnimator.setDuration(pointerAnimationLength);
         mPointerAnimator.setInterpolator(new DecelerateInterpolator());
         mPointerAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
@@ -187,7 +185,7 @@ public class GraphView5 extends View {
         } else {
             mPaintText.setAlpha(255);
         }
-        canvas.drawText(mFormat.format(mCurrentValue), mPointerLocation.x + mPointerRadiusPx * 1.2f, mPointerLocation.y - 2 * mStrokeInPx, mPaintText);
+        canvas.drawText(mFormat.format(mCurrentValue), mPointerLocation.x + mPointerRadiusPx * 1.2f, mPointerLocation.y - 2 * mLineWidth, mPaintText);
     }
 
     private void drawPointerX(Canvas canvas) {
