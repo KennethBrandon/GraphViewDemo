@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="PieChart">
+    <declare-styleable name="GraphView5">
         <attr name="showAxes" format="boolean" />
         <attr name="showPointer" format="boolean" />
         <attr name="animationDuration" format="integer" />
