@@ -9,6 +9,7 @@
         <attr name="axesColor" format="color" />
         <attr name="pointerColor" format="color" />
         <attr name="lineWidth" format="dimension" />
+        <attr name="pointerRadius" format="dimension" />
         <attr name="graphType" format="enum">
             <enum name="line" value="0" />
             <enum name="bar" value="1" />

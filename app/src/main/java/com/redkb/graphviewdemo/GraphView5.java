@@ -17,8 +17,6 @@ import java.text.NumberFormat;
 
 public class GraphView5 extends View {
     //private static final String TAG = "GraphView5";
-    private static final int POINTER_RADIUS_DP = 15;
-    private final int mPointerRadiusPx = (int) Utility.dpToPx(POINTER_RADIUS_DP, getResources());
     private final Paint mPaintLine = new Paint();
     private final Paint mPaintPointer = new Paint();
     private final Paint mPaintAxes = new Paint();
@@ -38,6 +36,7 @@ public class GraphView5 extends View {
     private int mPointerColor;
     private int mLineWidth;
     private int mTextSize;
+    private int mPointerRadiusPx;
     private float[] mData;
     private float mCurrentValue; //the value of the current down location
     private ValueAnimator mPointerAnimator = ValueAnimator.ofFloat(0, 1);
@@ -76,6 +75,7 @@ public class GraphView5 extends View {
             mPointerColor = typedArray.getColor(R.styleable.GraphView5_pointerColor, 0xaa3344);
             mLineWidth = typedArray.getDimensionPixelSize(R.styleable.GraphView5_lineWidth, (int) Utility.dpToPx(2, getResources()));
             mTextSize = typedArray.getDimensionPixelSize(R.styleable.GraphView5_numberTextSize, (int) Utility.dpToPx(20, getResources()));
+            mPointerRadiusPx = typedArray.getDimensionPixelSize(R.styleable.GraphView5_pointerRadius, (int) Utility.dpToPx(15, getResources()));
         } finally {
             typedArray.recycle();
         }

@@ -42,6 +42,7 @@
                         android:layout_weight="1"
                         redkb:animationDuration="100"
                         redkb:pointerColor="@color/colorAccent"
+                        redkb:pointerRadius="25dp"
                         redkb:lineColor="@color/colorPrimary"
                         redkb:axesColor="@color/colorPrimaryDark"
                         redkb:lineWidth="3dp"
