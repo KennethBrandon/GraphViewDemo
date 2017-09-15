@@ -65,33 +65,33 @@ public class CustomViewActivity extends AppCompatActivity {
         host.setup();
 
         //Tab 1
-        TabHost.TabSpec spec = host.newTabSpec("Graph 1");
+        TabHost.TabSpec spec = host.newTabSpec("1");
         spec.setContent(R.id.tab1);
-        spec.setIndicator("Graph 1");
+        spec.setIndicator("1");
         host.addTab(spec);
 
         //Tab 2
-        spec = host.newTabSpec("Graph 2");
+        spec = host.newTabSpec("2");
         spec.setContent(R.id.tab2);
-        spec.setIndicator("Graph 2");
+        spec.setIndicator("2");
         host.addTab(spec);
 
         //Tab 3
-        spec = host.newTabSpec("Graph 3");
+        spec = host.newTabSpec("3");
         spec.setContent(R.id.tab3);
-        spec.setIndicator("Graph 3");
+        spec.setIndicator("3");
         host.addTab(spec);
 
         //Tab 4
-        spec = host.newTabSpec("Graph 4");
+        spec = host.newTabSpec("4");
         spec.setContent(R.id.tab4);
-        spec.setIndicator("Graph 4");
+        spec.setIndicator("4");
         host.addTab(spec);
 
         //Tab 5
-        spec = host.newTabSpec("Graph 5");
+        spec = host.newTabSpec("5");
         spec.setContent(R.id.tab5);
-        spec.setIndicator("Graph 5");
+        spec.setIndicator("5");
         host.addTab(spec);
     }
 
