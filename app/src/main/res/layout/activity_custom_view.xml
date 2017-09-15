@@ -29,69 +29,30 @@
                 android:layout_height="match_parent">
 
                 <LinearLayout
-                    android:id="@+id/tab1"
+                    android:id="@+id/tab5"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                    <com.redkb.graphviewdemo.GraphView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/tab2"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <com.redkb.graphviewdemo.GraphView2
-                        android:id="@+id/graphView2"
+                    <com.redkb.graphviewdemo.GraphView5
+                        android:id="@+id/graphView5"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1" />
 
                     <Button
-                        android:id="@+id/generateButton"
+                        android:id="@+id/generateButton5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/generate_data" />
 
                     <EditText
-                        android:id="@+id/numberPicker"
+                        android:id="@+id/numberPicker5"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/number_of_points"
                         android:inputType="numberSigned"
                         android:text="@string/_100" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/tab3"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <com.redkb.graphviewdemo.GraphView3
-                        android:id="@+id/graphView3"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1" />
-
-                    <Button
-                        android:id="@+id/generateButton3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/generate_data" />
-
-                    <EditText
-                        android:id="@+id/numberPicker3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="@string/number_of_points"
-                        android:inputType="numberSigned"
-                        android:text="@string/_100" />
-
                 </LinearLayout>
 
                 <LinearLayout
@@ -123,30 +84,71 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/tab5"
+                    android:id="@+id/tab3"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                    <com.redkb.graphviewdemo.GraphView5
-                        android:id="@+id/graphView5"
+                    <com.redkb.graphviewdemo.GraphView3
+                        android:id="@+id/graphView3"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1" />
 
                     <Button
-                        android:id="@+id/generateButton5"
+                        android:id="@+id/generateButton3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/generate_data" />
 
                     <EditText
-                        android:id="@+id/numberPicker5"
+                        android:id="@+id/numberPicker3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/number_of_points"
                         android:inputType="numberSigned"
                         android:text="@string/_100" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/tab2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <com.redkb.graphviewdemo.GraphView2
+                        android:id="@+id/graphView2"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+                    <Button
+                        android:id="@+id/generateButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/generate_data" />
+
+                    <EditText
+                        android:id="@+id/numberPicker"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/number_of_points"
+                        android:inputType="numberSigned"
+                        android:text="@string/_100" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/tab1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <com.redkb.graphviewdemo.GraphView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
 
                 </LinearLayout>
             </FrameLayout>
