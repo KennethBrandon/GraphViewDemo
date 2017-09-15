@@ -40,8 +40,6 @@ public class GraphView5 extends View {
 
     protected enum GraphType {LINE, BAR}
 
-    ;
-
     public GraphView5(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
 
