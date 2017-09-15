@@ -273,6 +273,7 @@ public class GraphView5 extends View {
 
     public void setShowAxes(boolean showAxes) {
         this.mShowAxes = showAxes;
+        invalidate();
     }
 
     public boolean showPointer() {
@@ -281,6 +282,7 @@ public class GraphView5 extends View {
 
     public void setShowPointer(boolean showPointer) {
         this.mShowPointer = showPointer;
+        invalidate();
     }
 
     public int getPointerAnimationLength() {
@@ -289,6 +291,7 @@ public class GraphView5 extends View {
 
     public void setPointerAnimationLength(int pointerAnimationLength) {
         this.mPointerAnimationLength = pointerAnimationLength;
+        invalidate();
     }
 
     public int getAxesColor() {
@@ -297,6 +300,7 @@ public class GraphView5 extends View {
 
     public void setAxesColor(int axesColor) {
         this.mAxesColor = axesColor;
+        invalidate();
     }
 
     public int getLineColor() {
@@ -305,6 +309,7 @@ public class GraphView5 extends View {
 
     public void setLineColor(int lineColor) {
         this.mLineColor = lineColor;
+        invalidate();
     }
 
     public int getPointerColor() {
@@ -313,6 +318,7 @@ public class GraphView5 extends View {
 
     public void setPointerColor(int pointerColor) {
         this.mPointerColor = pointerColor;
+        invalidate();
     }
 
     public int getLineWidth() {
@@ -321,6 +327,7 @@ public class GraphView5 extends View {
 
     public void setLineWidth(int lineWidth) {
         this.mLineWidthPx = lineWidth;
+        invalidate();
     }
 
     public int getTextSize() {
@@ -329,6 +336,7 @@ public class GraphView5 extends View {
 
     public void setTextSize(int textSize) {
         this.mTextSizePx = textSize;
+        invalidate();
     }
 
     public int getPointerRadiusPx() {
@@ -337,6 +345,7 @@ public class GraphView5 extends View {
 
     public void setPointerRadiusPx(int mPointerRadiusPx) {
         this.mPointerRadiusPx = mPointerRadiusPx;
+        invalidate();
     }
 
     public GraphType getGraphType() {
@@ -345,5 +354,6 @@ public class GraphView5 extends View {
 
     public void setGraphType(GraphType graphType) {
         this.mGraphType = graphType;
+        invalidate();
     }
 }
