@@ -33,6 +33,7 @@ public class GraphView5 extends View {
     private float[] mData;
     private float mCurrentValue; //the value of the current down location
 
+    //Getters and Setters for these:
     private boolean mShowAxes = true;
     private boolean mShowPointer = true;
     private int mPointerAnimationLength = 200; //in ms
