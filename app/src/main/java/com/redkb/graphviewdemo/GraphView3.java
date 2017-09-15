@@ -99,7 +99,7 @@ public class GraphView3 extends View {
     protected void onDraw(Canvas canvas) {
         drawAxes(canvas);
         drawLine(canvas);
-        if (mDown) {
+        if (mDown && mData != null) {
             drawPointerCircle(canvas);
             drawPointerX(canvas);
             drawTextValue(canvas);
@@ -139,6 +139,9 @@ public class GraphView3 extends View {
     }
 
     private void setPointerLocation(MotionEvent event) {
+        if (mData == null) {
+            return;
+        }
         //Using the width and the x of the event we find the corresponding data index
         int index = (int) (((event.getX()) * (mMaxIndex - 1.0f) / ((float) getWidth())) + 1f);
         if (index < 0) {
