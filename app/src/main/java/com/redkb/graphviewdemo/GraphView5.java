@@ -34,9 +34,9 @@ public class GraphView5 extends View {
     private float mCurrentValue; //the value of the current down location
 
     //Getters and Setters for these:
-    private boolean mShowAxes = true;
-    private boolean mShowPointer = true;
-    private int mPointerAnimationLength = 200; //in ms
+    private boolean mShowAxes;
+    private boolean mShowPointer;
+    private int mPointerAnimationLength; //in ms
     private int mAxesColor;
     private int mLineColor;
     private int mPointerColor;
