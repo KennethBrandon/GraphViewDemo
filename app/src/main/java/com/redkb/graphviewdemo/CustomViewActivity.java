@@ -64,22 +64,10 @@ public class CustomViewActivity extends AppCompatActivity {
         TabHost host = findViewById(R.id.tabHost);
         host.setup();
 
-        //Tab 1
-        TabHost.TabSpec spec = host.newTabSpec("1");
-        spec.setContent(R.id.tab1);
-        spec.setIndicator("1");
-        host.addTab(spec);
-
-        //Tab 2
-        spec = host.newTabSpec("2");
-        spec.setContent(R.id.tab2);
-        spec.setIndicator("2");
-        host.addTab(spec);
-
-        //Tab 3
-        spec = host.newTabSpec("3");
-        spec.setContent(R.id.tab3);
-        spec.setIndicator("3");
+        //Tab 5
+        TabHost.TabSpec spec = host.newTabSpec("5");
+        spec.setContent(R.id.tab5);
+        spec.setIndicator("5");
         host.addTab(spec);
 
         //Tab 4
@@ -88,10 +76,22 @@ public class CustomViewActivity extends AppCompatActivity {
         spec.setIndicator("4");
         host.addTab(spec);
 
-        //Tab 5
-        spec = host.newTabSpec("5");
-        spec.setContent(R.id.tab5);
-        spec.setIndicator("5");
+        //Tab 3
+        spec = host.newTabSpec("3");
+        spec.setContent(R.id.tab3);
+        spec.setIndicator("3");
+        host.addTab(spec);
+
+        //Tab 2
+        spec = host.newTabSpec("2");
+        spec.setContent(R.id.tab2);
+        spec.setIndicator("2");
+        host.addTab(spec);
+
+        //Tab 1
+        spec = host.newTabSpec("1");
+        spec.setContent(R.id.tab1);
+        spec.setIndicator("1");
         host.addTab(spec);
     }
 
