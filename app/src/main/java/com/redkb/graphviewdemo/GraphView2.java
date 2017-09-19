@@ -55,7 +55,7 @@ public class GraphView2 extends View {
         return (max - value) * (getHeight()) / (max - min);
     }
 
-    private float getXFromIndex(int i, int max) {
-        return ((float) i * ((getWidth()) / ((float) max - 1.0f)));
+    private float getXFromIndex(int index, int max) {
+        return ((float) index * ((getWidth()) / ((float) max - 1.0f)));
     }
 }
