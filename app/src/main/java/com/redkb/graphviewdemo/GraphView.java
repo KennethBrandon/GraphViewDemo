@@ -17,8 +17,7 @@ public class GraphView extends View {
     public GraphView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         mPaintLine.setColor(Color.BLUE);
-        int strokeInPx = (int) dpToPx(STROKE_WIDTH_DP);
-        mPaintLine.setStrokeWidth(strokeInPx);
+        mPaintLine.setStrokeWidth((int) dpToPx(STROKE_WIDTH_DP));
     }
 
     @Override
