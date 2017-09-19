@@ -18,8 +18,7 @@ public class GraphView2 extends View {
     public GraphView2(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         mPaintLine.setColor(Color.argb(255, 33, 189, 222));
-        int strokeInPx = (int) Utility.dpToPx(STROKE_WIDTH_DP, getResources());
-        mPaintLine.setStrokeWidth(strokeInPx);
+        mPaintLine.setStrokeWidth((int) Utility.dpToPx(STROKE_WIDTH_DP, getResources()));
         mPaintLine.setStyle(Paint.Style.STROKE);
         mPaintLine.setAntiAlias(true);
         mPaintLine.setStrokeJoin(Paint.Join.ROUND);
