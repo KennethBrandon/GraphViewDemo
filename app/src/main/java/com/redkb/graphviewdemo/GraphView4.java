@@ -90,7 +90,6 @@ public class GraphView4 extends View {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        //Log.i(TAG, "Event: " + event.getAction() + " (" + event.getX() + ", " + event.getY() + ")");
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 mPointerAnimator.start();

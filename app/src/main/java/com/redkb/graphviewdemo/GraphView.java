@@ -31,7 +31,7 @@ public class GraphView extends View {
         canvas.drawLine(0, canvas.getHeight(), canvas.getWidth(), canvas.getHeight(), mPaintLine);
     }
 
-    private float dpToPx(final float value) {
+    private float dpToPx(float value) {
         return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, value, getResources().getDisplayMetrics());
     }
 }
