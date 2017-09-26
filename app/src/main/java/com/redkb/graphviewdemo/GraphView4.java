@@ -112,7 +112,7 @@ public class GraphView4 extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         drawAxes(canvas);
-        drawLine(canvas);
+        drawLineGraph(canvas);
         if ((mDown || mPointerAnimator.isRunning()) && mData != null) {
             drawPointerCircle(canvas);
             drawPointerX(canvas);
@@ -154,7 +154,7 @@ public class GraphView4 extends View {
         mPaintPointer.setAlpha(255); //back to full. This is needed because this paint is shared with drawing the X
     }
 
-    private void drawLine(Canvas canvas) {
+    private void drawLineGraph(Canvas canvas) {
         canvas.drawPath(mPath, mPaintLine);
     }
 

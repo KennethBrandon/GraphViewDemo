@@ -160,10 +160,10 @@ public class GraphView5 extends View {
         }
         switch (mGraphType) {
             case LINE:
-                drawLine(canvas);
+                drawLineGraph(canvas);
                 break;
             case BAR:
-                drawBar(canvas);
+                drawBarGraph(canvas);
                 break;
         }
         if ((mDown || mPointerAnimator.isRunning()) && mData != null && mShowPointer) {
@@ -174,7 +174,7 @@ public class GraphView5 extends View {
         super.onDraw(canvas);
     }
 
-    private void drawBar(Canvas canvas) {
+    private void drawBarGraph(Canvas canvas) {
         if (mData == null) return;
         for (int i = 0; i < mData.length; i++) {
             int x = (int) getXFromIndex(i);
@@ -215,7 +215,7 @@ public class GraphView5 extends View {
         mPaintPointer.setAlpha(255); //back to full. This is needed because this paint is shared with drawing the X
     }
 
-    private void drawLine(Canvas canvas) {
+    private void drawLineGraph(Canvas canvas) {
         if (mPath.isEmpty()) {
             buildPath(); //
         }

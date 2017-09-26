@@ -97,7 +97,7 @@ public class GraphView3 extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         drawAxes(canvas);
-        drawLine(canvas);
+        drawLineGraph(canvas);
         if (mDown && mData != null) {
             drawPointerCircle(canvas);
             drawPointerX(canvas);
@@ -120,7 +120,7 @@ public class GraphView3 extends View {
         canvas.drawCircle(mPointerLocation.x, mPointerLocation.y, mPointerRadiusPx, mPaintPointer);
     }
 
-    private void drawLine(Canvas canvas) {
+    private void drawLineGraph(Canvas canvas) {
         canvas.drawPath(mPath, mPaintLine);
     }
 

@@ -38,11 +38,11 @@ public class GraphView2 extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         drawAxes(canvas);
-        drawLine(canvas);
+        drawLineGraph(canvas);
         super.onDraw(canvas);
     }
 
-    private void drawLine(Canvas canvas) {
+    private void drawLineGraph(Canvas canvas) {
         canvas.drawPath(mPath, mPaintLine);
     }
 
