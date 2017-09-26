@@ -1,8 +1,12 @@
-# GraphViewDemo
+# Graph View Demo 
+
+## [Download and run the apk here!](../master/Graph%20View%20Demo.apk?raw=true)
+
+![GraphViewDemo](../master/GraphViewDemo.gif "GraphView demo animation")
 
 This app shows the evolution of writing a custom view by creating a graph view that takes in an array of floats and draws either a line or bar graph. The graph view also accepts touch inputs and draws a pointer with animations.
 
-Each GraphView builds off of the previous one.
+Each GraphView builds off of the previous one. 
 
 ## Steps:
 1. [GraphView](../master/app/src/main/java/com/redkb/graphviewdemo/GraphView.java) - overrides onDraw to draw two lines to make the axes of the graph
