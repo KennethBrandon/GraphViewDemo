@@ -19,4 +19,4 @@ Each GraphView builds off of the previous one.
 
 Created for a talk given at the [OC Android Developer](https://www.meetup.com/OC-Android-Developers/) Meetup group.
 
-Slides for this talk will be posted here once they have been written.
+[Slides for this talk can be found here.](http://bit.ly/GraphViewSlides)
